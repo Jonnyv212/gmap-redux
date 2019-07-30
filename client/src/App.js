@@ -36,23 +36,26 @@ class App extends Component {
     let gName = this.state.data.map(item => item.name);
     let gAddress = this.state.data.map(item => item.formatted_address);
     let gPlaceID = this.state.data.map(item => item.place_id);
+    let gIcon = this.state.data.map(item => item.icon);
+
     let dataIndex = this.state.data.length;
     let gFull = [];
 
     //Generate every project from state data.
     for (let i = 0; i < dataIndex; i++) {
       gFull.push(
-        this.displayPlace(gName[i], gAddress[i], gPlaceID[i])
+        this.displayPlace(gName[i], gAddress[i], gPlaceID[i], gIcon[i])
       );
     }
     return gFull;
   };
 
-  displayPlace = (name, address, placeID) => {
+  displayPlace = (name, address, placeID, icon) => {
     return(
     <div>
         <ul>
-          <li>Name: {name}</li>
+          {/* <img src={icon} /> */}
+          <h2>{name}</h2>
           <li>Address: {address}</li>
           <li>Place ID: {placeID}</li>
         </ul>
