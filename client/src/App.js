@@ -9,13 +9,55 @@ class App extends Component {
       data: []
     };
   }
+
+  
+  componentDidMount() {
+    this.getData();
+  }
+
+
+  
   getData = () => {
-    axios.get("/googledata").then(response => {
+    axios.get("/annarbor").then(response => {
+      let res = response.data.length;
+      let resFull = [];
+      // For every piece of data in the array push it to a resFull.
+      for (let i = 0; i < res; i++) {
+        resFull.push(response.data[i]);
+      }
+      // Set the data state to array after pushing data to resFull[].
       this.setState({
-        data: response.data
+        data: resFull
       });
     });
   };
+
+  placeList = () => {
+    let gName = this.state.data.map(item => item.name);
+    let gAddress = this.state.data.map(item => item.formatted_address);
+    let gPlaceID = this.state.data.map(item => item.place_id);
+    let dataIndex = this.state.data.length;
+    let gFull = [];
+
+    //Generate every project from state data.
+    for (let i = 0; i < dataIndex; i++) {
+      gFull.push(
+        this.displayPlace(gName[i], gAddress[i], gPlaceID[i])
+      );
+    }
+    return gFull;
+  };
+
+  displayPlace = (name, address, placeID) => {
+    return(
+    <div>
+        <ul>
+          <li>Name: {name}</li>
+          <li>Address: {address}</li>
+          <li>Place ID: {placeID}</li>
+        </ul>
+    </div>)
+  }
 
   //Assign list to a UL that contains the returned li from the for loop.
   // let list = <ul className="dataUL">{resFull}</ul>;
@@ -30,35 +72,11 @@ class App extends Component {
   // });
   // };
 
-  componentDidMount() {
-    // this.getData();
-    this.getData();
-    // console.log(process.env);
-  }
-
-  App = () => {
-    return (
-      <div className="App">
-        <header className="App-header">
-          {/* <img src={} className="App-logo" alt="logo" /> */}
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  };
-
   render() {
-    return <div>{this.state.data}</div>;
+    return <div>
+      <h1>Restaurants</h1>
+      {this.placeList()}
+    </div>;
   }
 }
 export default App;

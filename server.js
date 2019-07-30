@@ -19,32 +19,34 @@ app.use(express.static(path.join(__dirname, "client/build")));
 //   console.log(userdata);
 // });
 
-var googleData = data => {
-  app.get("/googledata", (req, res) => {
+var googleData = (data, route) => {
+  app.get(route, (req, res) => {
     res.send(data);
   });
 };
 
-var apiData = () => {
+var apiData = (url, route) => {
   let resFull = [];
   axios
-    .get(
-      "https://maps.googleapis.com/maps/api/place/textsearch/json?query=123+main+street&location=42.3675294,-71.186966&radius=10000&key=AIzaSyARAq8VaHRUFkVEuiGQmlvgHbzurfJmHOY"
-    )
+    .get(url)
     .then(response => {
       for (let i = 0; i < response.data.results.length; i++) {
-        resFull.push(response.data.results[i].name);
+        resFull.push(response.data.results[i]);
       }
       // console.log(response.data.results[0].name);
       return resFull;
     })
-    .then(googleData(resFull))
+    .then(googleData(resFull, route))
     .catch(error => {
       console.log(error);
     });
 };
 
-apiData();
+const mainStreetURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=123+main+street&location=42.3675294,-71.186966&radius=10000&key=AIzaSyARAq8VaHRUFkVEuiGQmlvgHbzurfJmHOY"
+const annArborResURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyARAq8VaHRUFkVEuiGQmlvgHbzurfJmHOY&query=Restaurants+in+48197"
+
+apiData(mainStreetURL, "/googledata");
+apiData(annArborResURL, "/annarbor");
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
