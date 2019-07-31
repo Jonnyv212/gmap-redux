@@ -42,11 +42,28 @@ var apiData = (url, route) => {
     });
 };
 
-const mainStreetURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=123+main+street&location=42.3675294,-71.186966&radius=10000&key=AIzaSyARAq8VaHRUFkVEuiGQmlvgHbzurfJmHOY"
-const annArborResURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyARAq8VaHRUFkVEuiGQmlvgHbzurfJmHOY&query=Restaurants+in+48197"
+const mainStreetURL =
+  "https://maps.googleapis.com/maps/api/place/textsearch/json?query=123+main+street&location=42.3675294,-71.186966&radius=10000&key=AIzaSyARAq8VaHRUFkVEuiGQmlvgHbzurfJmHOY";
+const annArborResURL =
+  "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyARAq8VaHRUFkVEuiGQmlvgHbzurfJmHOY&query=Restaurants+in+48197";
+const zipcodeResURL =
+  "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyARAq8VaHRUFkVEuiGQmlvgHbzurfJmHOY&query=Restaurants+in+";
 
 apiData(mainStreetURL, "/googledata");
 apiData(annArborResURL, "/annarbor");
+
+app.get("/zipcodeSearch/:id", (req, res) => {
+  let resFull = [];
+  axios.get(zipcodeResURL + req.params.id).then(response => {
+    for (let i = 0; i < response.data.results.length; i++) {
+      resFull.push(response.data.results[i]);
+    }
+    console.log(resFull);
+    // return resFull;
+    res.send(resFull);
+  });
+  // .then(res.send(resFull));
+});
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

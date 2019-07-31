@@ -10,13 +10,13 @@ class App extends Component {
     };
   }
 
-  
   componentDidMount() {
     this.getData();
+    this.setState({
+      data: this.placeList()
+    });
   }
 
-
-  
   getData = () => {
     axios.get("/annarbor").then(response => {
       let res = response.data.length;
@@ -28,6 +28,14 @@ class App extends Component {
       // Set the data state to array after pushing data to resFull[].
       this.setState({
         data: resFull
+      });
+    });
+  };
+
+  searchData = () => {
+    axios.get("/zipcodeSearch/" + this.state.search).then(response => {
+      this.setState({
+        data: response.data
       });
     });
   };
@@ -51,35 +59,25 @@ class App extends Component {
   };
 
   displayPlace = (name, address, placeID, icon) => {
-    return(
-    <div>
+    return (
+      <div>
         <ul>
           {/* <img src={icon} /> */}
           <h2>{name}</h2>
           <li>Address: {address}</li>
           <li>Place ID: {placeID}</li>
         </ul>
-    </div>)
-  }
-
-  //Assign list to a UL that contains the returned li from the for loop.
-  // let list = <ul className="dataUL">{resFull}</ul>;
-
-  //Set the state of the parameter statevalue to the returned list.
-  //   this.setState({
-  //     [stateValue]: list
-  //   });
-  // })
-  // .catch(error => {
-  //   console.log(error);
-  // });
-  // };
+      </div>
+    );
+  };
 
   render() {
-    return <div>
-      <h1>Restaurants</h1>
-      {this.placeList()}
-    </div>;
+    return (
+      <div>
+        <h1>Restaurants</h1>
+        {this.placeList()}
+      </div>
+    );
   }
 }
 export default App;
