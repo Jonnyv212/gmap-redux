@@ -78,7 +78,7 @@ class App extends Component {
 
   displayPlace = (name, address, placeID, icon) => {
     return (
-      <div>
+      <div className ="restaurantBlock">
         <ul>
           {/* <img src={icon} /> */}
           <h2>{name}</h2>
@@ -105,7 +105,7 @@ class App extends Component {
       }
     }
     return (
-      <div>
+      <div className="gmap">
         {/* <Counter/> */}
         <h1>Restaurants</h1>
         <p>Enter a zipcode</p>
