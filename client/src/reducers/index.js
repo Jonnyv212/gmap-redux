@@ -1,10 +1,8 @@
-import counterReducer from './counter';
-import searchReducer from './search';
-import {combineReducers} from 'redux';
+import searchReducer from "./search";
+import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
-    counter: counterReducer,
-    search: searchReducer
-})
+  search: searchReducer
+});
 
 export default allReducers;

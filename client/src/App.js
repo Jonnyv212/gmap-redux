@@ -20,7 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     // this.getData();
-    this.searchData()
+    this.searchData();
     // this.setState({
     //   output: this.placeList()
     // });
@@ -42,21 +42,20 @@ class App extends Component {
   // };
 
   searchData = () => {
-    this.setState({input: this.state.search}, () => {
-
-    axios.get("/zipcodeSearch/" + this.state.input).then(response => {
-      let res = response.data.length;
-      let resFull = [];
-      // For every piece of data in the array push it to a resFull.
-      for (let i = 0; i < res; i++) {
-        resFull.push(response.data[i]);
-      }
-      this.setState({
-        data: resFull
+    this.setState({ input: this.state.search }, () => {
+      axios.get("/zipcodeSearch/" + this.state.input).then(response => {
+        let res = response.data.length;
+        let resFull = [];
+        // For every piece of data in the array push it to a resFull.
+        for (let i = 0; i < res; i++) {
+          resFull.push(response.data[i]);
+        }
+        this.setState({
+          data: resFull
+        });
       });
     });
-  });
-}
+  };
 
   placeList = () => {
     let gName = this.state.data.map(item => item.name);
@@ -73,12 +72,12 @@ class App extends Component {
         this.displayPlace(gName[i], gAddress[i], gPlaceID[i], gIcon[i])
       );
     }
-    return gFull
+    return gFull;
   };
 
   displayPlace = (name, address, placeID, icon) => {
     return (
-      <div className ="restaurantBlock">
+      <div className="restaurantBlock">
         <ul>
           {/* <img src={icon} /> */}
           <h2>{name}</h2>
@@ -89,32 +88,32 @@ class App extends Component {
     );
   };
 
-  handleSearch = (event) => {
-    this.setState({search: event.target.value})
-  }
+  handleSearch = event => {
+    this.setState({ search: event.target.value });
+  };
 
   handleClick = () => {
-    this.setState({input: this.state.search}, console.log(this.state.input))
-
-  }
+    this.setState({ input: this.state.search }, console.log(this.state.input));
+  };
 
   render() {
     if (!this.state.data.length) {
-      if(this.state.loadingEnabled == true){
-        return <div>Loading...</div>
+      if (this.state.loadingEnabled == true) {
+        return <div>Loading...</div>;
       }
     }
     return (
       <div className="gmap">
-        {/* <Counter/> */}
+        <Counter />
         <h1>Restaurants</h1>
         <p>Enter a zipcode</p>
-        <input type="text"
+        <input
+          type="text"
           value={this.state.search}
           onChange={this.handleSearch.bind(this)}
-          />
-          
-          <button onClick={this.searchData}>Click me</button>
+        />
+
+        <button onClick={this.searchData}>Click me</button>
 
         {this.placeList()}
       </div>
