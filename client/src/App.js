@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 // import {useSelector} from 'react-redux';
 import "./App.css";
-import Counter from "./counter.js";
+import DisplayData from "./DisplayData.js";
 // var test = require('./test.js');
 
 class App extends Component {
@@ -104,7 +104,6 @@ class App extends Component {
     }
     return (
       <div className="gmap">
-        <Counter />
         <h1>Restaurants</h1>
         <p>Enter a zipcode</p>
         <input
@@ -115,7 +114,7 @@ class App extends Component {
 
         <button onClick={this.searchData}>Click me</button>
 
-        {this.placeList()}
+        <DisplayData />
       </div>
     );
   }
