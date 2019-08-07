@@ -14,3 +14,9 @@ export const fetchData = payload => {
     payload
   };
 };
+
+export const other = () => {
+  return {
+    type: "OTHER"
+  };
+};

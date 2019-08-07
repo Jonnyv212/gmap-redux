@@ -1,10 +1,19 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
 
 const DisplayData = () => {
+  const dispatch = useDispatch();
   const searchSelector = useSelector(state => state.search);
-  return <div>{mapData(searchSelector)}</div>;
+  const otherSelector = useSelector(state => state.other);
+
+  return (
+    <div>
+      <button onClick={() => dispatch({ type: "OTHER" })}>Other</button>
+      {otherSelector}
+      {mapData(searchSelector)}
+    </div>
+  );
 };
 
 const mapData = data => {
