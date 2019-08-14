@@ -1,8 +1,9 @@
 import React from "react";
+import "./Main.css"
 
-export const Main = (props) => {
+export const Main = () => {
     return(
-        <div>
+        <div className="gmap">
             <div className="row">
                 <div className="col-xs-12">
                     <h1>The Main Page</h1>
@@ -10,10 +11,7 @@ export const Main = (props) => {
             </div>
             <div className="row">
                 <div className="col-xs-12">
-                    <button className="btn btn-primary"
-                        onClick={() => props.getData()}>
-                        Change the Username
-                    </button>
+
                 </div>
             </div>
         </div>

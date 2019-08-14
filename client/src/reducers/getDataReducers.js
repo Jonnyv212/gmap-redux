@@ -1,7 +1,8 @@
 const getDataReducers = (
   state = {
     gData: [],
-    displayComp: []
+    displayComp: [],
+    search: ""
   },
   action
 ) => {
@@ -18,15 +19,14 @@ const getDataReducers = (
         displayComp: action.payload
       };
       break;
+    case "SEARCH_DATA":
+      state = {
+        ...state,
+        search: action.payload
+      };
+      break;
   }
   return state;
 };
 
-// async function search(){
-// let myData = axios.get("/zipcodeSearch/48197").then(response => {
-//       return response.data;
-//     });
-//     console.log(myData)
-//     return await myData;
-// };
 export default getDataReducers;

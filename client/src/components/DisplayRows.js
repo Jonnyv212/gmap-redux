@@ -1,6 +1,6 @@
 import React from "react";
 
-export const DisplayGData = props => {
+export const DisplayRows = props => {
   return (
     <div>
       <div key={props.Ddata.id} className="restaurantBlock">
