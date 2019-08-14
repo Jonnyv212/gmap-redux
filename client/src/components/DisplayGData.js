@@ -1,18 +1,15 @@
-import React from "react"
+import React from "react";
 
-
- export const DisplayGData = (props) => {
-    return (
-      <div>
-          <div key={props.gData.id} className="restaurantBlock">
-            <ul>
-              <h2>{props.gData.name}</h2>
-              <li>Address: {props.gData.formatted_address}</li>
-              <li>Place ID: {props.gData.place_id}</li>
-            </ul>
-          </div>
+export const DisplayGData = props => {
+  return (
+    <div>
+      <div key={props.Ddata.id} className="restaurantBlock">
+        <ul>
+          <h2>{props.Ddata.name}</h2>
+          <li>Address: {props.Ddata.formatted_address}</li>
+          <li>Place ID: {props.Ddata.place_id}</li>
+        </ul>
       </div>
-    );
-  };
-
-  // export default DisplayGData;
+    </div>
+  );
+};

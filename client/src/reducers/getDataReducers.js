@@ -1,11 +1,14 @@
-const getDataReducers = (state = {
-  gData: [],
-  displayComp: []
-}, action) => {
+const getDataReducers = (
+  state = {
+    gData: [],
+    displayComp: []
+  },
+  action
+) => {
   switch (action.type) {
     case "GET_DATA":
       state = {
-        ...state, 
+        ...state,
         gData: action.payload
       };
       break;
@@ -13,7 +16,7 @@ const getDataReducers = (state = {
       state = {
         ...state,
         displayComp: action.payload
-      }
+      };
       break;
   }
   return state;
