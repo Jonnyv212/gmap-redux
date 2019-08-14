@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
-import { setGData, setDisplayComp } from "../actions/gDataActions";
+import { setGData, setDisplayComp, setSearchData } from "../actions/gDataActions";
 import { DisplayRows } from "../components/DisplayRows";
 import { Main } from "../components/MainComponent";
 
@@ -23,6 +23,8 @@ const MainContainer = () => {
   }, [dispatch]);
 
   useEffect(() => dispatch(setDisplayComp(fetchData()), []));
+
+  useEffect(() => dispatch(setSearchData("test")),[])
 
   return <div>
     <Main />

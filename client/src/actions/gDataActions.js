@@ -11,16 +11,7 @@ export const setGData = () => {
   };
 };
 
-// let resFull = [];
-// await axios.get("/zipcodeSearch/48197").then(response => {
-//   let res = response.data.length;
-//   // For every piece of data in the array push it to a resFull.
-//   for (let i = 0; i < res; i++) {
-//     resFull.push(response.data[i]);
-//   }
-// });
-
-export function setDisplayComp(components) {
+export const setDisplayComp = (components) => {
   return dispatch => {
     dispatch({
       type: "DISPLAY_COMP",
@@ -28,11 +19,12 @@ export function setDisplayComp(components) {
     });
   };
 }
-// export function setDisplayComp(components){
-//     return dispatch => {
-//             dispatch({
-//                 type: "DISPLAY_COMP",
-//                 payload: components
-//         })
-//     }
-// }
+
+export const setSearchData = (value) => {
+  return dispatch => {
+    dispatch({
+      type: "SEARCH_DATA",
+      payload: value
+    })
+  }
+}
