@@ -13,12 +13,12 @@ const getDataReducers = (
         gData: action.payload
       };
       break;
-    case "DISPLAY_COMP":
-      state = {
-        ...state,
-        displayComp: action.payload
-      };
-      break;
+    // case "DISPLAY_COMP":
+    //   state = {
+    //     ...state,
+    //     displayComp: action.payload
+    //   };
+    //   break;
     case "SEARCH_DATA":
       state = {
         ...state,

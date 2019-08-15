@@ -1,8 +1,6 @@
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
 
-
-export const setGData = (search) => {
+export const setGData = search => {
   return async dispatch => {
     // const search = useSelector(state => state.dataStates.search);
 
@@ -15,20 +13,20 @@ export const setGData = (search) => {
   };
 };
 
-export const setDisplayComp = (components) => {
-  return dispatch => {
-    dispatch({
-      type: "DISPLAY_COMP",
-      payload: components
-    });
-  };
-}
+// export const setDisplayComp = components => {
+//   return dispatch => {
+//     dispatch({
+//       type: "DISPLAY_COMP",
+//       payload: components
+//     });
+//   };
+// };
 
-export const setSearchData = (value) => {
+export const setSearchData = value => {
   return dispatch => {
     dispatch({
       type: "SEARCH_DATA",
       payload: value
-    })
-  }
-}
+    });
+  };
+};
