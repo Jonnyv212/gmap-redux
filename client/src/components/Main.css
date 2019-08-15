@@ -10,3 +10,6 @@
     margin-bottom: 4px;
   }
   
+  .restaurantBlock li{
+    list-style-type: none
+  }

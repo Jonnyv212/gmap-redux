@@ -1,8 +1,12 @@
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
-export const setGData = () => {
+
+export const setGData = (search) => {
   return async dispatch => {
-    let resFull = await axios.get("/zipcodeSearch/48197");
+    // const search = useSelector(state => state.dataStates.search);
+
+    let resFull = await axios.get("/zipcodeSearch/" + search);
 
     dispatch({
       type: "GET_DATA",

@@ -2,7 +2,7 @@ const getDataReducers = (
   state = {
     gData: [],
     displayComp: [],
-    search: ""
+    search: "48197"
   },
   action
 ) => {
